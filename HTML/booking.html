@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Schedule — Gambytes</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background:#f8f9fa; }
+    .timeslot { min-width:140px; margin:6px 6px 0 0; }
+    .timeslot.selected { background:#0d6efd; color:#fff; border-color:#0d6efd; }
+    .step-hidden { display:none; }
+    .calendar-box { background:#fff; border-radius:8px; padding:18px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-danger" href="#">
+        <img src="LOGO.png" alt="Logo" width="35" height="35" class="me-2 align-middle" />
+        Gambytes
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+        <a href="login.html" class="btn btn-danger ms-3">LOGIN</a>
+      </div>
+    </div>
+  </nav>
+
+  <hr>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="calendar-box">
+          <h4 class="mb-3">Select a Date & Time</h4>
+
+          <!-- STEP 1: calendar + timeslots -->
+          <div id="step1">
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label class="form-label">Choose date</label>
+                <input type="date" id="datePicker" class="form-control" />
+                <small class="text-muted">Available times shown on the right.</small>
+              </div>
+
+              <div class="col-md-7">
+                <div id="timesContainer" class="d-flex flex-wrap"></div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+              <button id="nextBtn" class="btn btn-primary" disabled>Next</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: details form -->
+          <div id="step2" class="step-hidden">
+            <h5 class="mb-3">Enter Details</h5>
+            <form id="bookingForm" class="row g-3">
+    <div class="col-md-6">
+        <label class="form-label">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" class="form-control" required>
+    </div>
+    
+    <div class="col-md-6">
+        <label class="form-label">Email *</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Guest Email (Optional)</label>
+        <input type="email" id="guestEmail" name="guestEmail" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Phone Number *</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">How can we help you?</label>
+        <textarea id="notes" name="notes" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">Selected Appointment</label>
+        <input type="text" id="selectedSlot" class="form-control" readonly>
+    </div>
+
+    <div class="col-12 d-flex justify-content-between">
+        <button type="button" id="backBtn" class="btn btn-outline-secondary">Back</button>
+        <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+    </div>
+</form>
+
+          <!-- CONFIRM -->
+          <div id="confirmBox" class="step-hidden mt-3">
+            <div class="alert alert-success mb-0">
+              <h5 class="mb-1">Confirmed</h5>
+              <p id="confirmText" class="mb-0 small"></p>
+            </div>
+            <div class="mt-3 text-end">
+              <a href="index.html" class="btn btn-sm btn-primary">Back to Home</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // config: sample slot range and interval
+  const startTime = 11; // 11:00
+  const endTime = 16;   // 16:00
+  const intervalMin = 30;
+
+  const datePicker = document.getElementById('datePicker');
+  const timesContainer = document.getElementById('timesContainer');
+  const nextBtn = document.getElementById('nextBtn');
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const backBtn = document.getElementById('backBtn');
+  const bookingForm = document.getElementById('bookingForm');
+  const selectedSlotInput = document.getElementById('selectedSlot');
+  const confirmBox = document.getElementById('confirmBox');
+  const confirmText = document.getElementById('confirmText');
+
+  // set min date = today
+  const today = new Date();
+  datePicker.min = today.toISOString().split('T')[0];
+  datePicker.value = datePicker.min;
+  let selectedSlot = null;
+
+  function pad(n){ return n<10? '0'+n : n; }
+  function formatTime(h,m){
+    const ampm = h >= 12 ? 'pm' : 'am';
+    let hour = h % 12; if(hour===0) hour = 12;
+    return hour + ':' + pad(m) + ampm;
+  }
+
+  function buildSlots(dateStr){
+    timesContainer.innerHTML = '';
+    for(let h=startTime; h<=endTime; h++){
+      for(let m=0; m<60; m+=intervalMin){
+        // skip last slot if beyond endTime (e.g., endTime 16:00, allow 16:00 only)
+        if(h===endTime && m>0) continue;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-outline-secondary timeslot';
+        btn.textContent = formatTime(h,m);
+        btn.dataset.time = `${pad(h)}:${pad(m)}`;
+        btn.onclick = () => {
+          document.querySelectorAll('.timeslot').forEach(t=>t.classList.remove('selected','btn-primary'));
+          btn.classList.add('selected','btn-primary');
+          selectedSlot = { date: dateStr, time: btn.dataset.time };
+          nextBtn.disabled = false;
+        };
+        timesContainer.appendChild(btn);
+      }
+    }
+  }
+
+  // initial slots
+  buildSlots(datePicker.value);
+
+  datePicker.addEventListener('change', (e) => {
+    selectedSlot = null;
+    nextBtn.disabled = true;
+    buildSlots(e.target.value);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if(!selectedSlot) return;
+    // show form and prefill selected slot text
+    selectedSlotInput.value = `${selectedSlot.date} ${selectedSlot.time}`;
+    step1.classList.add('step-hidden');
+    step2.classList.remove('step-hidden');
+  });
+
+  backBtn.addEventListener('click', () => {
+    step2.classList.add('step-hidden');
+    step1.classList.remove('step-hidden');
+  });
+
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if(!name || !email || !phone) return alert('Please fill required fields.');
+
+    // Simulate booking (replace with real API call if needed)
+    step2.classList.add('step-hidden');
+    confirmBox.classList.remove('step-hidden');
+    confirmText.innerHTML = `Hi <strong>${name}</strong>. Your appointment is scheduled on <strong>${selectedSlot.date}</strong> at <strong>${selectedSlot.time}</strong>. We sent a confirmation to <strong>${email}</strong>.`;
+  });
+</script>
+
+</body>
+</html>

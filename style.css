@@ -1,0 +1,211 @@
+/* Corporate Red Theme for Gambytes */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+
+/* Navbar */
+.navbar {
+  transition: all 0.4s ease;
+  padding: 15px 0;
+}
+.navbar .nav-link {
+  color: white !important;
+  font-weight: 500;
+  margin: 0 10px;
+}
+.navbar.scrolled {
+  background-color: white !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.navbar.scrolled .nav-link {
+  color: var(--iskolar-dark) !important;
+}
+.btn-register {
+  color: white !important;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+.btn-register:hover {
+  background: white;
+  color: var(--iskolar-primary) !important;
+}
+.navbar.scrolled .btn-register {
+  color: var(--iskolar-primary) !important;
+  border: 2px solid var(--iskolar-primary);
+}
+.navbar.scrolled .btn-register:hover {
+  background: var(--iskolar-primary);
+  color: white !important;
+}
+.btn-login {
+  background: var(--iskolar-secondary);
+  color: var(--iskolar-dark);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-login:hover {
+  background: #e6bf00;
+  transform: translateY(-2px);
+}
+
+
+/* Navbar */
+.navbar {
+  padding: 15px 0;
+  transition: background 0.3s;
+}
+
+.navbar a.nav-link {
+  color: #ccc !important;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.navbar a.nav-link:hover,
+.navbar a.nav-link.active {
+  color: #ff4d4d !important;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background: url('images/gambling.jpg') center center/cover no-repeat;
+  z-index: 1;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-section > .container {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-section h1 {
+  color: #fff;
+}
+
+.hero-section p {
+  color: #ccc;
+}
+
+.hero-img {
+  max-width: 80%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Compact centered register card */
+.hero-section {
+  min-height: auto; /* allow page to size to content */
+  padding-top: 90px; /* space for fixed navbar */
+  padding-bottom: 40px;
+}
+
+.register-card {
+  max-width: 480px; /* standard readable width */
+  margin: 0 auto;   /* center horizontally */
+}
+
+.register-card .card {
+  border-radius: 8px;
+}
+
+.register-card .card-body {
+  padding: 1rem 1rem;
+}
+
+.register-card .form-control {
+  padding: 0.45rem 0.6rem;
+  height: calc(1.5em + 0.9rem);
+  font-size: 0.95rem;
+}
+
+.register-card .mb-2 { margin-bottom: .5rem !important; }
+.register-card .btn { padding: 0.5rem; font-size: 0.95rem; }
+
+/* optional slight transparent backdrop spacing */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Features */
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.1);
+}
+
+/* About */
+#about {
+  background: linear-gradient(180deg, #1a0000, #000);
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+  }
+
+  .hero-img {
+    max-width: 60%;
+    margin-top: 30px;
+  }
+}
+
+.time-slot { border:1px solid #d1d5db; background:#fff; color:#0f172a; }
+    .time-slot.active { background:#ef4444; color:#fff; border-color:#ef4444; }
+    .time-slot:hover { cursor:pointer; transform:translateY(-1px); }
+    .card-schedule { max-height: 60vh; overflow:auto; }
+
+/* center register/login modal content */
+#registerFirstModal .modal-content {
+    text-align: center;
+}
+#registerFirstModal .modal-body {
+    text-align: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+#registerFirstModal .modal-footer {
+    justify-content: center; /* center footer buttons */
+    gap: .5rem;
+}
+#registerFirstModal .modal-title {
+    width: 100%;
+    text-align: center;
+}
+

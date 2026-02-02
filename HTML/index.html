@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gambytes | Financial Recovery Platform</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-danger" href="#">
+        <img src="LOGO.png" alt="Logo" width="35" height="35" class="me-2 align-middle" />
+        Gambytes
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+        <a href="login.html" class="btn btn-danger ms-3">LOGIN</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section d-flex align-items-center text-white">
+    <div class="container text-center text-md-start">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h6 class="text-uppercase text-danger fw-bold mb-2">Online Gambling Recovery Platform</h6>
+          <h1 class="fw-bold display-5">"Where Recovery, meets Responsibility"</h1>
+          <p class="lead mb-4">
+            Manage your finances, reduce online gambling-related risks, and rebuild financial stability
+            through data-driven insights and responsible tools.
+          </p>
+          <div class="d-flex flex-column flex-md-row gap-3">
+            <button type="button" class="btn btn-danger btn-lg"data-bs-toggle="modal" data-bs-target="#selfDiagModal">Self-Diagnose</button>
+            <a href="register.html" class="btn btn-outline-light btn-lg">Log</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Features -->
+  <section id="features" class="py-5 bg-light text-center">
+    <div class="container">
+      <h2 class="fw-bold text-dark mb-4">Our Core Features</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title text-danger">💰 Spending Tracker</h5>
+              <p class="card-text text-muted">
+                Track all your transactions and identify gambling-related expenses easily.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title text-danger">📅 Self-Exclusion Tools</h5>
+              <p class="card-text text-muted">
+                Set restrictions and manage self-control periods effectively.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title text-danger">🧠 Mood Journals</h5>
+              <p class="card-text text-muted">
+                Record emotional states to identify triggers and progress patterns.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title text-danger">👨‍👩‍👧 Family Support</h5>
+              <p class="card-text text-muted">
+                Enable family involvement to provide emotional and financial accountability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Self-Diagnose Modal -->
+  <div class="modal fade" id="selfDiagModal" tabindex="-1" aria-labelledby="selfDiagLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="selfDiagLabel">Self-Diagnose Checklist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="selfDiagForm">
+          <div class="modal-body text-start">
+            <p class="small text-muted">Check each item that applies to you in the past 12 months.</p>
+            <div class="row">
+              <div class="col-12">
+                <!-- checklist items (unchanged) -->
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q1">
+                  <label class="form-check-label" for="q1">1. Needs to gamble with increasing amounts of money to achieve the desired excitement.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q2">
+                  <label class="form-check-label" for="q2">2. Is restless or irritable when attempting to cut down or stop gambling.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q3">
+                  <label class="form-check-label" for="q3">3. Has made repeated unsuccessful efforts to control, cut back, or stop gambling.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q4">
+                  <label class="form-check-label" for="q4">4. Is often preoccupied with gambling (thoughts of reliving past gambling experiences, planning the next venture, or thinking of ways to get money to gamble).</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q5">
+                  <label class="form-check-label" for="q5">5. Often gambles when feeling distressed (helpless, guilty, anxious, depressed).</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q6">
+                  <label class="form-check-label" for="q6">6. After losing money gambling, often returns another day to get even ("chasing" one's losses).</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q7">
+                  <label class="form-check-label" for="q7">7. Lies to conceal the extent of involvement with gambling.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q8">
+                  <label class="form-check-label" for="q8">8. Has jeopardized or lost a significant relationship, job, or educational/career opportunity because of gambling.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q9">
+                  <label class="form-check-label" for="q9">9. Relies on others to provide money to relieve desperate financial situations caused by gambling.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input diag-checkbox" type="checkbox" value="1" id="q10">
+                  <label class="form-check-label" for="q10">10. Has made sacrifices (personal, professional, financial) due to gambling.</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="diagResult" class="mt-3" style="display:none;">
+              <h5>Result</h5>
+              <p id="diagMessage" class="fw-semibold"></p>
+
+              <!-- Highlighted informational note -->
+              <div class="alert alert-info mt-2" role="alert">
+                <strong>Note:</strong> This is an informational screening only. For diagnosis and clinical advice consult a professional.
+              </div>
+
+              <!-- Book button now links to booking.html (no Calendly) -->
+              <div class="mt-2">
+                <a href="booking.html" class="btn btn-primary" id="bookBtn">Book Appointment</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Self-Diagnose</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> 
+  
+
+  <!-- About Section -->
+  <section id="about" class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/9015/9015136.png"
+            alt="About Gambytes"
+            class="img-fluid rounded shadow-lg"
+          />
+        </div>
+        <div class="col-md-6">
+          <h2 class="fw-bold mb-3 text-danger">About Gambytes</h2>
+          <p class="text-light">
+            Gambytes is a web and mobile-based solution designed to support individuals struggling
+            with online gambling addiction. We aim to help users regain control over their financial
+            well-being and promote transparency within families.
+          </p>
+          <p class="text-light">
+            Our mission is to reduce untracked financial lending and gambling-related losses among pilot users.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-white text-center py-3 mt-auto">
+    <p class="mb-0 small">© 2025 Gambytes By: DAVE DELA CERNA | Empowering Responsible Financial Recovery</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    $("#contactForm").on("submit", function (e) {
+      e.preventDefault();
+      alert("Thank you for reaching out! We’ll contact you soon.");
+      this.reset();
+    });
+  </script>
+
+  <!-- Inline script for self-diagnose logic (Calendly removed) -->
+  <script>
+    // handle self-diagnose submit
+    $("#selfDiagForm").on("submit", function (e) {
+      e.preventDefault();
+      let total = 0;
+      $(".diag-checkbox:checked").each(function () {
+        total += Number($(this).val() || 0);
+      });
+
+      let message = "";
+      let colorClass = "";
+
+      if (total <= 4) {
+        message = `Score: ${total} — Low / No gambling disorder indicated.`;
+        colorClass = "text-success";
+      } else if (total <= 7) {
+        message = `Score: ${total} — Moderate risk; consider seeking support.`;
+        colorClass = "text-warning";
+      } else {
+        message = `Score: ${total} — High risk for gambling disorder; please seek professional help.`;
+        colorClass = "text-danger";
+      }
+
+      $("#diagMessage").removeClass("text-success text-warning text-danger").addClass(colorClass).text(message);
+      $("#diagResult").show();
+      // scroll result into view within modal
+      $(".modal-body").animate({ scrollTop: $("#diagResult").position().top }, 250);
+    });
+
+    // reset modal on close
+    $('#selfDiagModal').on('hidden.bs.modal', function () {
+      $("#selfDiagForm")[0].reset();
+      $("#diagResult").hide();
+      $("#diagMessage").text("").removeClass("text-success text-warning text-danger");
+    });
+  </script>
+</body>
+</html>
